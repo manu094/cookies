@@ -92,6 +92,10 @@ int main(int argc, char *argv[])
     fprintf(stderr, "%f\n", generators[1].cpsPerDollar);
 
     // Free remaining memory
+    for (int i = 0; i < generatorNb; i++) // Freeing the memory previously allocated in handleProperty
+    {
+        free(generators[i].name);
+    }
     free(buffer);
     free(generators);
     fclose(input);
@@ -120,7 +124,7 @@ int handleProperty(char *buffer, int *bufferMaxSize, int *currentCharIndex, GENE
         case 0:
             // Set generator "name" to point to the new property string
             generators[*currentGenerator].name = newProperty;
-            *currentProperty = 1; // TODO: Find out why this is leaking memory
+            *currentProperty = 1;
             break;
         // If we are handling the price
         case 1:
