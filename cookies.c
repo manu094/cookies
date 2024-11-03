@@ -169,7 +169,7 @@ int handleCharacter(char character, char *bufferP, int *bufferMaxSizeP, int *cur
         if (expandBuffer(bufferP, bufferMaxSizeP))
             return 1;
     }
-    *(bufferP + *currentCharIndexP) = character; // Put current character in the buffer
+    bufferP[*currentCharIndexP] = character;
     (*currentCharIndexP)++;
     return 0;
 }
